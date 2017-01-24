@@ -1,32 +1,22 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Mafia from './components/characters/Mafia';
 
-import { Card, Icon, Image } from 'semantic-ui-react'
+class App extends Component {
+    constructor(props) {
+        super(props);
+    }
 
-const App = () => (
-  <Card>
-    <Image src='http://semantic-ui.com/images/avatar2/large/matthew.png' />
-    <Card.Content>
-      <Card.Header>
-        Matthew
-      </Card.Header>
-      <Card.Meta>
-        <span className='date'>
-          Joined in 2015
-        </span>
-      </Card.Meta>
-      <Card.Description>
-        Matthew is a musician living in Nashville.
-      </Card.Description>
-    </Card.Content>
-    <Card.Content extra>
-      <a>
-        <Icon name='user' />
-        22 Friends
-      </a>
-    </Card.Content>
-  </Card>
-)
+    render() {
+        return(
+            <div>
+                <Mafia
+                    userColor="yellow"
+                    userId="qvil"
+                    userDescription="I am not Mafia"
+                />
+            </div>
+        );
+    }
+}
 
 export default App;
