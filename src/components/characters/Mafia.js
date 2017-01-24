@@ -18,41 +18,6 @@ const cardColorList = [
     'grey',
 ];
 
-const extra = (
-    <div>
-        <div className='ui two buttons'>
-          <Button
-              basic
-              color='green'
-              onClick={ console.log(1) }
-          >Save</Button>
-          <Button
-              basic
-              color='red'
-              onClick={ console.log(1) }
-          >Kill</Button>
-        </div>
-        <a>
-            Score:
-            <Icon
-                name='user'
-            />
-            {/* { count } */}
-            111
-        </a>
-    </div>
-);
-
-const buttonUserConditionals = (
-    <Button.Group>
-        <Button>Save</Button>
-        <Button.Or />
-        <Button positive={true}
-                onClick={ console.log(1) } >Kill</Button>
-    </Button.Group>
-);
-
-
 class ButtonSaveKill extends Component {
     constructor(props) {
         super(props);
@@ -68,19 +33,29 @@ class ButtonSaveKill extends Component {
 
     render() {
         return(
-            <div className='ui two buttons'>
-              <Button
-                  basic
-                  color='green'
-                  onClick={ this.handleSave }
-              >Save
-              </Button>
-              <Button
-                  basic
-                  color='red'
-                  onClick={ this.handleKill }
-              >Kill
-              </Button>
+            <div>
+                <div className='ui two buttons'>
+                  <Button
+                      basic
+                      color='green'
+                      onClick={ this.handleSave }
+                  >Save
+                  </Button>
+                  <Button
+                      basic
+                      color='red'
+                      onClick={ this.handleKill }
+                  >Kill
+                  </Button>
+                </div>
+                <a>
+                    Score:
+                    <Icon
+                        name='user'
+                    />
+                    {/* { count } */}
+                    111
+                </a>
             </div>
         );
     }
