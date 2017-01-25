@@ -25,7 +25,7 @@ class CardUserSimple extends Component {
                 onIncrement, onDecrement } = this.props;
 
         return(
-            <Card>
+            <Card centered>
               <Card.Content>
                 <Image floated='right' size='mini' src={ userImage ? userImage : initState.image } />
                 <Card.Header>
