@@ -42,12 +42,12 @@ class UserList extends Component {
             <Card.Group>
                 { userItems.map((v, i) => {
                     return (
-                        <CardUserSimple
-                            userImage={ userItems[i].userImage }
-                            userId={ userItems[i].userId }
-                            userCharacter={ userItems[i].userCharacter }
-                            userDescription={ userItems[i].userDescription }
-                            userKillScore={ userItems[i].userKillScore }
+                        <CardUserSimple key={ i }
+                            userImage={ v.userImage }
+                            userId={ v.userId }
+                            userCharacter={ v.userCharacter }
+                            userDescription={ v.userDescription }
+                            userKillScore={ v.userKillScore }
                         />
                     );
                 })}
