@@ -1,7 +1,9 @@
+// React
 import React, { Component } from 'react';
-import { Button, Card, Icon } from 'semantic-ui-react';
-
+// Redux
 import { connect } from 'react-redux';
+// Semantic-UI
+import { Button, Card, Icon, Divider } from 'semantic-ui-react';
 
 const cardColorList = [
     'red',
@@ -21,9 +23,14 @@ const cardColorList = [
 class ButtonSaveKill extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            active: false
+        }
     }
 
     handleSave = () => {
+        this.setState({ active: !this.state.active });
         console.log('save');
     }
 
@@ -36,13 +43,13 @@ class ButtonSaveKill extends Component {
             <div>
                 <div className='ui two buttons'>
                   <Button
-                      basic
+                      toggle
+                      active={ this.state.active }
                       color='green'
                       onClick={ this.handleSave }
                   >Save
                   </Button>
                   <Button
-                      basic
                       color='red'
                       onClick={ this.handleKill }
                   >Kill
@@ -61,13 +68,61 @@ class ButtonSaveKill extends Component {
     }
 }
 
+const styles = {
+    textAlign: 'center'
+};
+
+class ButtonSaveOrKill extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            kill: false
+        }
+    }
+
+    handleSave = () => {
+        this.setState({ kill: false });
+    }
+
+    handleKill = () => {
+        this.setState({ kill: true });
+    }
+
+    render() {
+        return(
+            <div>
+                <div className='ui two buttons' style={ styles }>
+                    <Button.Group
+                        size='medium'
+                        widths='3'
+                    >
+                        <Button
+                            compact={ true }
+                            color={ ( !this.state.kill ) ? 'green' : 'grey' }
+                            onClick={ this.handleSave }
+                        >Save
+                        </Button>
+                        <Button.Or />
+                        <Button
+                            compact={ true }
+                            color={ ( this.state.kill ) ? 'red' : 'grey' }
+                            onClick={ this.handleKill }
+                        >Kill
+                        </Button>
+                    </Button.Group>
+                </div>
+                <Divider />
+                <a>Score : <Icon name='user' />{/* { count } */}111</a>
+            </div>
+        );
+    }
+}
+
 class Mafia extends Component {
     constructor(props) {
         super(props);
-    }
-
-    handleClick = () => {
-        alert('click');
     }
 
     render() {
@@ -82,7 +137,7 @@ class Mafia extends Component {
                     header={ userId }
                     meta={ userCharacter }
                     description={ userDescription }
-                    extra={ <ButtonSaveKill /> }
+                    extra={ <ButtonSaveOrKill /> }
                 />
             </div>
         );
