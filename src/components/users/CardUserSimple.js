@@ -9,6 +9,11 @@ import ButtonSaveOrKill from './ButtonSaveOrKill';
 import KillScore from './KillScore';
 import { getRandomNumber } from '../../utils';
 
+const initState = {
+    image: "http://semantic-ui.com/images/wireframe/image.png",
+    paragraph: "http://semantic-ui.com/images/wireframe/paragraph.png"
+};
+
 class CardUserSimple extends Component {
     constructor(props) {
         super(props);
@@ -20,9 +25,9 @@ class CardUserSimple extends Component {
         return(
             <Card>
               <Card.Content>
-                <Image floated='right' size='mini' src={ userImage } />
+                <Image floated='right' size='mini' src={ userImage ? userImage : initState.image } />
                 <Card.Header>
-                  { userId }
+                  { userId ? userId : <Image floated='' size='' src="http://semantic-ui.com/images/wireframe/paragraph.png" /> }
                 </Card.Header>
                 <Card.Meta>
                   { userCharacter }

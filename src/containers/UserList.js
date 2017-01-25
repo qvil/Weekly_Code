@@ -10,8 +10,8 @@ import CardUserSimple from '../components/users/CardUserSimple';
 
 const userItems = [
     {
-        userImage: "http://semantic-ui.com/images/avatar/large/steve.jpg",
-        userId: "aaa",
+        // userImage: "http://semantic-ui.com/images/avatar/large/steve.jpg",
+        // userId: "aaa",
         userCharacter: "mafia",
         userDescription: "I'm not mafia",
         userKillScore: "4",
