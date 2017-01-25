@@ -9,16 +9,26 @@ class ButtonSaveOrKill extends Component {
         super(props);
 
         this.state = {
-            kill: false
+            life: ''
         }
     }
 
     handleSave = () => {
-        this.setState({ kill: false });
+        if ( this.state.life === 'save' ) return;
+
+        this.props.onIncrement();
+        this.setState({
+            life: 'save',
+        });
     }
 
     handleKill = () => {
-        this.setState({ kill: true });
+        if ( this.state.life === 'kill' ) return;
+
+        this.props.onDecrement();
+        this.setState({
+            life: 'kill',
+        });
     }
 
     render() {
@@ -32,14 +42,14 @@ class ButtonSaveOrKill extends Component {
                 >
                     <Button
                         compact={ true }
-                        color={ ( !this.state.kill ) ? 'green' : 'grey' }
+                        color={ ( this.state.life === 'save' ) ? 'green' : 'grey' }
                         onClick={ this.handleSave }
                     >Save
                     </Button>
                     <Button.Or />
                     <Button
                         compact={ true }
-                        color={ ( this.state.kill ) ? 'red' : 'grey' }
+                        color={ ( this.state.life === 'kill' ) ? 'red' : 'grey' }
                         onClick={ this.handleKill }
                     >Kill
                     </Button>

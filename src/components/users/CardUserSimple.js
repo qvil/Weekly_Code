@@ -8,6 +8,7 @@ import { Button, Card, Icon, Divider, Image } from 'semantic-ui-react';
 import ButtonSaveOrKill from './ButtonSaveOrKill';
 import KillScore from './KillScore';
 import { getRandomNumber } from '../../utils';
+import { increment, decrement } from '../../actions';
 
 const initState = {
     image: "http://semantic-ui.com/images/wireframe/image.png",
@@ -20,7 +21,8 @@ class CardUserSimple extends Component {
     }
 
     render() {
-        const { userImage, userId, userCharacter, userDescription, userKillScore } = this.props;
+        const { userImage, userId, userCharacter, userDescription, userKillScore,
+                onIncrement, onDecrement } = this.props;
 
         return(
             <Card>
@@ -37,7 +39,10 @@ class CardUserSimple extends Component {
                 </Card.Description>
               </Card.Content>
               <Card.Content extra>
-                  <ButtonSaveOrKill />
+                  <ButtonSaveOrKill
+                      onIncrement={ onIncrement }
+                      onDecrement={ onDecrement }
+                  />
                   <Divider />
                   <KillScore score={ userKillScore } />
               </Card.Content>
@@ -45,5 +50,12 @@ class CardUserSimple extends Component {
         );
     }
 }
+
+let mapDispatchToProps = (dispatch) => ({
+    onIncrement: () => dispatch(increment()),
+    onDecrement: () => dispatch(decrement()),
+})
+
+CardUserSimple = connect(null, mapDispatchToProps)(CardUserSimple);
 
 export default CardUserSimple;

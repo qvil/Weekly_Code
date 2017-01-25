@@ -38,6 +38,8 @@ class UserList extends Component {
     }
 
     render() {
+        const { score } = this.props;
+
         return(
             <Card.Group>
                 { userItems.map((v, i) => {
@@ -47,7 +49,7 @@ class UserList extends Component {
                             userId={ v.userId }
                             userCharacter={ v.userCharacter }
                             userDescription={ v.userDescription }
-                            userKillScore={ v.userKillScore }
+                            userKillScore={ score }
                         />
                     );
                 })}
@@ -55,5 +57,11 @@ class UserList extends Component {
         );
     }
 }
+
+let mapStateToProps = (state) => ({
+    score: state.counter.score
+});
+
+UserList = connect(mapStateToProps)(UserList);
 
 export default UserList;
