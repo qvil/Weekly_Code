@@ -1,12 +1,22 @@
 import { combineReducers } from 'redux';
 import { INCREMENT, DECREMENT } from '../actions';
 
-function counter(state = 0, action) {
+const initialState = {
+    count: 0
+};
+
+function counter(state = initialState, action) {
     switch (action.type) {
         case INCREMENT:
-            return state + 1;
+            return {
+                ...state,
+                count: state.count + 1
+            };
         case DECREMENT:
-            return state - 1;
+            return {
+                ...state,
+                count: state.count - 1
+            };
         default:
             return state;
     }

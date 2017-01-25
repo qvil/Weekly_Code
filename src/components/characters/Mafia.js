@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // Semantic-UI
 import { Button, Card, Icon, Divider } from 'semantic-ui-react';
+// Custom Components
+import { increment, decrement } from '../../actions';
 
 const cardColorList = [
     'red',
@@ -91,6 +93,8 @@ class ButtonSaveOrKill extends Component {
     }
 
     render() {
+        const { onIncrement, onDecrement, count } = this.props;
+
         return(
             <div>
                 <div className='ui two buttons' style={ styles }>
@@ -101,20 +105,22 @@ class ButtonSaveOrKill extends Component {
                         <Button
                             compact={ true }
                             color={ ( !this.state.kill ) ? 'green' : 'grey' }
-                            onClick={ this.handleSave }
+                            // onClick={ this.handleSave(onIncrement) }
+                            onClick={ onIncrement }
                         >Save
                         </Button>
                         <Button.Or />
                         <Button
                             compact={ true }
                             color={ ( this.state.kill ) ? 'red' : 'grey' }
-                            onClick={ this.handleKill }
+                            // onClick={ this.handleKill(onDecrement) }
+                            onClick={ onDecrement }
                         >Kill
                         </Button>
                     </Button.Group>
                 </div>
                 <Divider />
-                <a>Score : <Icon name='user' />{/* { count } */}111</a>
+                <a>Score : <Icon name='user' />{ count }</a>
             </div>
         );
     }
@@ -126,7 +132,7 @@ class Mafia extends Component {
     }
 
     render() {
-        const { userColor, userId, userCharacter, userDescription, count } = this.props;
+        const { userColor, userId, userCharacter, userDescription } = this.props;
 
         return(
             <div>
@@ -144,15 +150,18 @@ class Mafia extends Component {
     }
 }
 
-// let mapStateToProps = (state) => (
-//     count: state.counter.count
-// );
-//
-// let mapDispatchToProps = (dispatch) => ({
-//     onIncrement: () => dispatch(increment()),
-//     onDecrement: () => dispatch(decrement()),
-// })
-//
-// Mafia = connect(mapStateToProps)(Mafia);
+let mapStateToProps = (state) => ({
+    count: state.counter.count
+});
+
+let mapDispatchToProps = (dispatch) => ({
+    onIncrement: () => dispatch(increment()),
+    onDecrement: () => dispatch(decrement()),
+})
+
+Mafia = connect(mapStateToProps)(Mafia);
+
+ButtonSaveOrKill = connect(mapStateToProps)(ButtonSaveOrKill);
+ButtonSaveOrKill = connect(null, mapDispatchToProps)(ButtonSaveOrKill);
 
 export default Mafia;
