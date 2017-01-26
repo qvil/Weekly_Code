@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Header, Image, Modal, Icon } from 'semantic-ui-react';
+import { Button, Header, Image, Modal } from 'semantic-ui-react';
 import MafiaImage from '../../img/Wanted001.jpg';
 import { ButtonCircularSNS } from '../components/main-page';
 

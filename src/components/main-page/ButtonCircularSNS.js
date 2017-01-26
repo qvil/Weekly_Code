@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Icon } from 'semantic-ui-react';
+import { Button, Popup } from 'semantic-ui-react';
 
 const listSNS = [
     "facebook",
@@ -15,7 +15,11 @@ const ButtonCircularSNS = () => {
     return (
         <div>
             { listSNS.map((v, i) => (
-                <Button circular key={ v } color={ v } icon={ v } />
+                <Popup
+                    key={ v }
+                    trigger={ <Button circular key={ v } color={ v } icon={ v } /> }
+                    content="Sorry. This function is not yet supported."
+                />
             )) }
         </div>
     );
