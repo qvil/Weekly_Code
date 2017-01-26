@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { increment, decrement } from '../actions';
 // Semantic-UI
-import { Card } from 'semantic-ui-react';
 
 import CharacterInfo from '../components/characters/CharacterInfo';
 import UserList from './UserList';
+import ModalInfo from './ModalInfo';
 
 class App extends Component {
     constructor(props) {
@@ -28,6 +28,7 @@ class App extends Component {
                         userDescription='I am not Mafia!'
                     />
                 </Card.Group> */}
+                <ModalInfo />
                 <UserList />
             </div>
         );
