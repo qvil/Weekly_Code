@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { increment, decrement } from '../actions';
 // Semantic-UI
 
-import CharacterInfo from '../components/characters/CharacterInfo';
+// import CharacterInfo from '../components/characters/CharacterInfo';
+import MainPage from './MainPage';
 import UserList from './UserList';
-import ModalInfo from './ModalInfo';
 
 class App extends Component {
     constructor(props) {
@@ -28,7 +28,7 @@ class App extends Component {
                         userDescription='I am not Mafia!'
                     />
                 </Card.Group> */}
-                <ModalInfo />
+                <MainPage />
                 <UserList />
             </div>
         );

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Icon, Button, Header, Image, Modal } from 'semantic-ui-react';
+import { Button, Header, Image, Modal } from 'semantic-ui-react';
 import MafiaImage from '../../img/Wanted001.jpg';
-import ButtonCircularSNS from '../components/ButtonCircularSNS';
+import { ButtonCircularSNS } from '../components/main-page';
 
-class ModalInfo extends Component {
+class MainPage extends Component {
     constructor(props) {
         super(props);
 
@@ -55,10 +55,16 @@ class ModalInfo extends Component {
                         </Modal.Description>
                     </Modal.Content>
                     <Modal.Actions>
-                        <NestedModal />
-                        <Button color="red" content="Nope" onClick={ this.close } />
                         <Button
-                            color="green"
+                            color="red"
+                            content="Like"
+                            icon="heart"
+                            label={{ basic: true, color: 'red', pointing: 'left', content: '0629' }}
+                        />
+                        <NestedModal />
+                        <Button negative content="Nope" onClick={ this.close } />
+                        <Button
+                            positive
                             loading={ this.state.button.loading }
                             icon="checkmark"
                             labelPosition="right"
@@ -71,7 +77,7 @@ class ModalInfo extends Component {
     }
 }
 
-class NestedModal extends (Component, ModalInfo) {
+class NestedModal extends (Component, MainPage) {
   state = { open: false }
 
   render() {
@@ -84,7 +90,14 @@ class NestedModal extends (Component, ModalInfo) {
         onOpen={this.open}
         onClose={this.close}
         size='small'
-        trigger={<Button primary icon>Share <Icon name='left chevron' /></Button>}
+        trigger={
+            <Button
+                color="blue"
+                content="Share"
+                icon="share"
+                label={{ as: 'a', basic: true, color: 'blue', pointing: 'left', content: '0916' }}
+            />
+        }
       >
         <Modal.Header>Share to SNS</Modal.Header>
         <Modal.Content>
@@ -92,11 +105,11 @@ class NestedModal extends (Component, ModalInfo) {
           <p>Let's share with friends!</p>
         </Modal.Content>
         <Modal.Actions>
-          <ButtonCircularSNS />
+            <ButtonCircularSNS />
         </Modal.Actions>
       </Modal>
     )
   }
 }
 
-export default ModalInfo;
+export default MainPage;
