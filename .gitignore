@@ -5,7 +5,6 @@ node_modules
 
 # testing
 coverage
-start.sh
 
 # production
 build
