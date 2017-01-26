@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Header, Image, Modal } from 'semantic-ui-react';
+import { Button, Header, Image, Modal, Icon } from 'semantic-ui-react';
 import MafiaImage from '../../img/Wanted001.jpg';
 import { ButtonCircularSNS } from '../components/main-page';
 
@@ -98,6 +98,7 @@ class NestedModal extends (Component, MainPage) {
                 label={{ as: 'a', basic: true, color: 'blue', pointing: 'left', content: '0916' }}
             />
         }
+        closeIcon="close"
       >
         <Modal.Header>Share to SNS</Modal.Header>
         <Modal.Content>
