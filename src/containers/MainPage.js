@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Header, Image, Modal } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { Button, Header, Image, Modal, Popup } from 'semantic-ui-react';
 import MafiaImage from '../../img/Wanted001.jpg';
 import { ButtonCircularSNS } from '../components/main-page';
+import { increment, decrement } from '../actions';
 
 class MainPage extends Component {
     constructor(props) {
@@ -34,6 +36,7 @@ class MainPage extends Component {
     }
 
     render() {
+        const { like, increseLike } = this.props;
         const { open, dimmer } = this.state;
 
         return(
@@ -55,12 +58,21 @@ class MainPage extends Component {
                         </Modal.Description>
                     </Modal.Content>
                     <Modal.Actions>
-                        <Button
-                            color="red"
-                            content="Like"
-                            icon="heart"
-                            label={{ basic: true, color: 'red', pointing: 'left', content: '0629' }}
+                        <Popup
+                          trigger={
+                              <Button
+                                  color="red"
+                                  content="Like"
+                                  icon="heart"
+                                  label={{ basic: true, color: 'red', pointing: 'left', content: like }}
+                                  onClick= { increseLike }
+                              />
+                          }
+                          content='Thank you for like!'
+                          on='click'
+                          hideOnScroll
                         />
+
                         <NestedModal />
                         <Button negative content="Nope" onClick={ this.close } />
                         <Button
@@ -81,7 +93,8 @@ class NestedModal extends (Component, MainPage) {
   state = { open: false }
 
   render() {
-    const { open } = this.state
+    const { share } = this.props;
+    const { open } = this.state;
 
     return (
       <Modal
@@ -95,7 +108,7 @@ class NestedModal extends (Component, MainPage) {
                 color="blue"
                 content="Share"
                 icon="share"
-                label={{ as: 'a', basic: true, color: 'blue', pointing: 'left', content: '0916' }}
+                label={{ as: 'a', basic: true, color: 'blue', pointing: 'left', content: share }}
             />
         }
         closeIcon="close"
@@ -112,5 +125,20 @@ class NestedModal extends (Component, MainPage) {
     )
   }
 }
+
+let mapStateToProps = (state) => ({
+    like: state.likeCounter.like,
+    share: state.likeCounter.share,
+});
+
+MainPage = connect(mapStateToProps)(MainPage);
+NestedModal = connect(mapStateToProps)(NestedModal);
+
+let mapDispatchToProps = (dispatch) => ({
+    increseLike: () => dispatch(increment()),
+    onDecrement: () => dispatch(decrement()),
+})
+
+MainPage = connect(null, mapDispatchToProps)(MainPage);
 
 export default MainPage;
