@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { INCREMENT, DECREMENT, OPEN, CLOSE } from '../actions';
+import { INCREMENT, DECREMENT, OPEN, CLOSE, GET_MAFIA, SET_MAFIA } from '../actions';
 
 const initState = {
     score: 0,
@@ -9,6 +9,16 @@ const initState = {
 
 const initResultPageState = {
     open: false
+};
+
+const initMafiaState = {
+    mafiaInfo: {
+        userImage: "http://semantic-ui.com/images/avatar2/large/rachel.png",
+        userId: "ddd",
+        userCharacter: "civil",
+        userDescription: "I'm docter",
+        userKillScore: "0",
+    }
 };
 
 function counter(state = initState, action) {
@@ -62,10 +72,27 @@ function resultPageState(state = initResultPageState, action) {
     }
 }
 
+function mafia(state = initMafiaState, action) {
+    switch (action.type) {
+        case GET_MAFIA:
+            return {
+                ...state
+            };
+        case SET_MAFIA:
+            return {
+                ...state,
+                mafiaInfo: action.mafiaInfo
+            };
+        default:
+            return state;
+    }
+}
+
 const mafiaApp = combineReducers({
     counter,
     likeCounter,
-    resultPageState
+    resultPageState,
+    mafia
 });
 
 export default mafiaApp;
