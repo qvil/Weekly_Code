@@ -7,6 +7,8 @@ import { Button, Card, Modal } from 'semantic-ui-react';
 // Custom Components
 import { getRandomNumber } from '../utils';
 import CardUserSimple from '../components/users/CardUserSimple';
+import ResultPage from './ResultPage';
+import { open, close } from '../actions';
 
 const userItems = [
     {
@@ -52,11 +54,7 @@ class UserList extends Component {
 
         this.state = {
           fluidButton: {
-            fluid: true,
             loading: false
-          },
-          resultWindow: {
-            open: false,
           }
         }
     }
@@ -64,10 +62,10 @@ class UserList extends Component {
     onClick = () => {
       this.setState({
         fluidButton: {
-          fluid: true,
           loading: true,
         }
       });
+      this.props.onOpen();
     }
 
     render() {
@@ -90,15 +88,16 @@ class UserList extends Component {
             </Card.Group>
             <Button
               primary
-              fluid={ this.state.fluidButton.fluid }
+              fluid
               loading={ this.state.fluidButton.loading }
               style={ styles.button }
               onClick={ this.onClick }
             >Confirm</Button>
-            <Modal
-              open={ this.state.resultWindow.open }
-              dimeer={ this.state.resultWindow.dimmer }
-            ></Modal>
+            <ResultPage
+                // open={ this.state.resultWindow.open }
+                // dimmer={ this.state.resultWindow.dimmer }
+                mafiaName="aslkfjaslkdjflk"
+            />
           </div>
 
         );
@@ -109,6 +108,11 @@ let mapStateToProps = (state) => ({
     score: state.counter.score
 });
 
+let mapDispatchToProps = (dispatch) => ({
+    onOpen: () => dispatch(open()),
+})
+
+UserList = connect(null, mapDispatchToProps)(UserList);
 UserList = connect(mapStateToProps)(UserList);
 
 export default UserList;

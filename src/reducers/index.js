@@ -1,10 +1,14 @@
 import { combineReducers } from 'redux';
-import { INCREMENT, DECREMENT } from '../actions';
+import { INCREMENT, DECREMENT, OPEN, CLOSE } from '../actions';
 
 const initState = {
     score: 0,
     like: 0,
     share: 0,
+};
+
+const initResultPageState = {
+    open: false
 };
 
 function counter(state = initState, action) {
@@ -41,9 +45,27 @@ function likeCounter(state = initState, action) {
     }
 }
 
-const counterApp = combineReducers({
+function resultPageState(state = initResultPageState, action) {
+    switch (action.type) {
+        case OPEN:
+            return {
+                ...state,
+                open: true
+            };
+        case CLOSE:
+            return {
+                ...state,
+                open: false
+            };
+        default:
+            return state;
+    }
+}
+
+const mafiaApp = combineReducers({
     counter,
-    likeCounter
+    likeCounter,
+    resultPageState
 });
 
-export default counterApp;
+export default mafiaApp;

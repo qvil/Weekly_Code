@@ -6,9 +6,9 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 // Custom Components
 import App from './containers/App';
-import counterApp from './reducers';
+import mafiaApp from './reducers';
 
-const store = createStore(counterApp);
+const store = createStore(mafiaApp);
 
 ReactDOM.render(
     <Provider store={ store }>
