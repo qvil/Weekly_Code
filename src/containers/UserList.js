@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // Redux
 import { connect } from 'react-redux';
 // Semantic-UI
-import { Button, Card, Container, Header } from 'semantic-ui-react';
+import { Button, Card, Container, Header, Segment } from 'semantic-ui-react';
 // Custom Components
 import { getRandomNumber } from '../utils';
 import CardUserSimple from '../components/users/CardUserSimple';
@@ -43,8 +43,8 @@ const userItems = [
 
 const styles = {
   button: {
-    marginTop: "20px",
-    marginBotton: "10px"
+    // marginTop: "20px",
+    // marginBotton: "10px"
   }
 };
 
@@ -79,29 +79,40 @@ class UserList extends Component {
         return(
           <div>
               <Container text>
-                  <Header as="h2" textAlign="center">User List</Header>
-                  <Card.Group>
-                      { userItems.map((v, i) => {
-                          v.userCharacter === 'mafia' ? setMafia(v) : console.log(333);
+                  <Segment raised>
+                      <Header as="h2" textAlign="center">User List</Header>
+                  </Segment>
+                  <Segment raised>
+                      <Card.Group>
+                          { userItems.map((v, i) => {
+                              v.userCharacter === 'mafia' ? setMafia(v) : console.log(333);
 
-                          return (
-                              <CardUserSimple key={ i }
-                                  userImage={ v.userImage }
-                                  userId={ v.userId }
-                                  userCharacter={ v.userCharacter }
-                                  userDescription={ v.userDescription }
-                                  userKillScore={ score }
-                              />
-                          );
-                      })}
-                  </Card.Group>
-                  <Button
-                    primary
-                    fluid
-                    loading={ this.state.fluidButton.loading }
-                    style={ styles.button }
-                    onClick={ this.onClick }
-                  >Confirm</Button>
+                              return (
+                                  <CardUserSimple key={ i }
+                                      userImage={ v.userImage }
+                                      userId={ v.userId }
+                                      userCharacter={ v.userCharacter }
+                                      userDescription={ v.userDescription }
+                                      userKillScore={ score }
+                                  />
+                              );
+                          })}
+                      </Card.Group>
+                  </Segment>
+                  <Segment
+                      raised
+                  >
+                      <Button
+                        primary
+                        fluid
+                        loading={ this.state.fluidButton.loading }
+                        style={ styles.button }
+                        onClick={ this.onClick }
+                      >Confirm
+                      </Button>
+                  </Segment>
+
+
                   <ResultPage
                       // open={ this.state.resultWindow.open }
                       // dimmer={ this.state.resultWindow.dimmer }
