@@ -1,10 +1,15 @@
+// React
 import React, { Component } from 'react';
+// Redux
 import { connect } from 'react-redux';
-import { Button, Header, Image, Modal, Popup, Icon } from 'semantic-ui-react';
-import MafiaImage from '../../img/Wanted001.jpg';
-import { ButtonCircularSNS } from '../components/main-page';
 import { increment, decrement } from '../actions';
+// Firebase
 import firebase from 'firebase';
+// Semantic-ui-react
+import { Button, Header, Image, Modal, Popup, } from 'semantic-ui-react';
+// Custom
+import MafiaImage from '../../img/Wanted001.jpg';
+import { ButtonCircularSNS, AuthUser } from '../components/main-page';
 
 // Initialize Firebase
 // TODO: Replace with your project's customized code snippet
@@ -30,10 +35,9 @@ class MainPage extends Component {
             auth: {
                 token: '',
                 user: 'anonymous',
-                errorCode: '',
-                errorMessage: '',
+                photoURL: '',
                 email: '',
-                credential: '',
+                like: 0
             }
         };
     }
@@ -59,12 +63,22 @@ class MainPage extends Component {
         let provider = new firebase.auth.GoogleAuthProvider();
 
         firebase.auth().signInWithPopup(provider).then((result) => {
+            // console.log("[TS_LOG] result : " + JSON.stringify(result));
             // This gives you a Google Access Token. You can use it to access the Google API.
             let token = result.credential.accessToken;
             // The signed-in user info.
             let user = result.user.displayName;
+            let photoURL = result.user.photoURL;
+            let email = result.user.email;
             // ...
-            this.setState({ auth: { user: user } });
+            this.setState({
+                auth: {
+                    user: user,
+                    photoURL: photoURL,
+                    email: email,
+                    like: 0
+                }
+            });
         }).catch(function(error) {
             // Handle Errors here.
             let errorCode = error.code;
@@ -97,7 +111,14 @@ class MainPage extends Component {
                         <Modal.Description>
                             <Header as="h1">You just to find out the mafia!</Header>
                             <Header as="h2">Are You Ready?</Header>
-                            <Header as="h3">auth user : { this.state.auth.user }</Header>
+                            <AuthUser
+                                size="large"
+                                user={ this.state.auth.user }
+                                email={ this.state.auth.email }
+                                photoURL={ this.state.auth.photoURL }
+                                date="1 Hour Ago"
+                                like={ this.state.auth.like }
+                            />
                         </Modal.Description>
                     </Modal.Content>
                     <Modal.Actions>
