@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Header, Image, Modal, Popup } from 'semantic-ui-react';
+import { Button, Header, Image, Modal, Popup, Icon } from 'semantic-ui-react';
 import MafiaImage from '../../img/Wanted001.jpg';
 import { ButtonCircularSNS } from '../components/main-page';
 import { increment, decrement } from '../actions';
+import firebase from 'firebase';
+
+// Initialize Firebase
+// TODO: Replace with your project's customized code snippet
+const config = {
+    apiKey: "AIzaSyDcielkp9FWsT9xmc6VxldkiD1TfWt6gv8",
+    authDomain: "mafia-be795.firebaseapp.com",
+    databaseURL: "https://mafia-be795.firebaseio.com",
+    storageBucket: "mafia-be795.appspot.com",
+    messagingSenderId: "744625572083"
+};
+firebase.initializeApp(config);
 
 class MainPage extends Component {
     constructor(props) {
@@ -14,6 +26,14 @@ class MainPage extends Component {
             dimmer: true,
             button: {
                 loading: false
+            },
+            auth: {
+                token: '',
+                user: 'anonymous',
+                errorCode: '',
+                errorMessage: '',
+                email: '',
+                credential: '',
             }
         };
     }
@@ -35,6 +55,28 @@ class MainPage extends Component {
         }, 1000);
     }
 
+    auth = () => {
+        let provider = new firebase.auth.GoogleAuthProvider();
+
+        firebase.auth().signInWithPopup(provider).then((result) => {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            let token = result.credential.accessToken;
+            // The signed-in user info.
+            let user = result.user.displayName;
+            // ...
+            this.setState({ auth: { user: user } });
+        }).catch(function(error) {
+            // Handle Errors here.
+            let errorCode = error.code;
+            let errorMessage = error.message;
+            // The email of the user's account used.
+            let email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            let credential = error.credential;
+            // ...
+        });
+    }
+
     render() {
         const { like, increseLike } = this.props;
         const { open, dimmer } = this.state;
@@ -53,8 +95,9 @@ class MainPage extends Component {
                     <Modal.Content image>
                         <Image wrapped size="medium" src={ MafiaImage } />
                         <Modal.Description>
-                            <Header>You just to find out the mafia!</Header>
-                            <p>Are You Ready?</p>
+                            <Header as="h1">You just to find out the mafia!</Header>
+                            <Header as="h2">Are You Ready?</Header>
+                            <Header as="h3">auth user : { this.state.auth.user }</Header>
                         </Modal.Description>
                     </Modal.Content>
                     <Modal.Actions>
@@ -72,7 +115,13 @@ class MainPage extends Component {
                           on='click'
                           hideOnScroll
                         />
-
+                        <Button
+                            circular
+                            color="green"
+                            content="Auth"
+                            icon="users"
+                            onClick= { this.auth }
+                        />
                         <NestedModal />
                         <Button negative content="Nope" onClick={ this.close } />
                         <Button
