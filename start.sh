@@ -1,1 +1,1 @@
-git pull origin week1_mafia; npm start
+git pull github week1_mafia; npm start
