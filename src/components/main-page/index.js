@@ -1,3 +1,4 @@
 import ButtonCircularSNS from './ButtonCircularSNS'
+import AuthUser from './AuthUser'
 
-export { ButtonCircularSNS };
+export { ButtonCircularSNS, AuthUser };
