@@ -79,40 +79,40 @@ class UserList extends Component {
         return(
           <div>
               <Container text>
-                  <Segment raised>
-                      <Header as="h2" textAlign="center">User List</Header>
-                  </Segment>
-                  <Segment raised>
-                      <Card.Group>
-                          { userItems.map((v, i) => {
-                              v.userCharacter === 'mafia' ? setMafia(v) : console.log(333);
+                  <Segment.Group raised>
+                      <Segment raised>
+                          <Header as="h2" textAlign="center">User List</Header>
+                      </Segment>
+                      <Segment raised>
+                          <Card.Group>
+                              { userItems.map((v, i) => {
+                                  v.userCharacter === 'mafia' ? setMafia(v) : console.log(333);
 
-                              return (
-                                  <CardUserSimple key={ i }
-                                      userImage={ v.userImage }
-                                      userId={ v.userId }
-                                      userCharacter={ v.userCharacter }
-                                      userDescription={ v.userDescription }
-                                      userKillScore={ score }
-                                  />
-                              );
-                          })}
-                      </Card.Group>
-                  </Segment>
-                  <Segment
-                      raised
-                  >
-                      <Button
-                        primary
-                        fluid
-                        loading={ this.state.fluidButton.loading }
-                        style={ styles.button }
-                        onClick={ this.onClick }
-                      >Confirm
-                      </Button>
-                  </Segment>
-
-
+                                  return (
+                                      <CardUserSimple key={ i }
+                                          userImage={ v.userImage }
+                                          userId={ v.userId }
+                                          userCharacter={ v.userCharacter }
+                                          userDescription={ v.userDescription }
+                                          userKillScore={ score }
+                                      />
+                                  );
+                              })}
+                          </Card.Group>
+                      </Segment>
+                      <Segment
+                          raised
+                      >
+                          <Button
+                            primary
+                            fluid
+                            loading={ this.state.fluidButton.loading }
+                            style={ styles.button }
+                            onClick={ this.onClick }
+                          >Confirm
+                          </Button>
+                      </Segment>
+                  </Segment.Group>
                   <ResultPage
                       // open={ this.state.resultWindow.open }
                       // dimmer={ this.state.resultWindow.dimmer }
