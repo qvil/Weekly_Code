@@ -14,7 +14,7 @@ class AuthUser extends Component {
         const { size, user, email, date, photoURL, like } = this.props;
 
         return(
-            <Feed size={ size } style={{ display: "none" }}>
+            <Feed size={ size }>
                 <Feed.Event>
                     <Feed.Label image={ photoURL ? photoURL : anonymousImage } />
                     <Feed.Content>
