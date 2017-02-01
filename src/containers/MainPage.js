@@ -38,7 +38,8 @@ class MainPage extends Component {
                 photoURL: '',
                 email: '',
                 like: 0
-            }
+            },
+            showAuthUser: true
         };
     }
 
@@ -77,7 +78,8 @@ class MainPage extends Component {
                     photoURL: photoURL,
                     email: email,
                     like: 0
-                }
+                },
+                showAuthUser: false
             });
         }).catch(function(error) {
             // Handle Errors here.
@@ -118,6 +120,7 @@ class MainPage extends Component {
                                 photoURL={ this.state.auth.photoURL }
                                 date="1 Hour Ago"
                                 like={ this.state.auth.like }
+                                style={{ display: this.state.showAuthUser ? '' : 'none' }}
                             />
                         </Modal.Description>
                     </Modal.Content>
@@ -138,9 +141,9 @@ class MainPage extends Component {
                         />
                         <Button
                             circular
-                            color="green"
+                            color="google plus"
                             content="Auth"
-                            icon="users"
+                            icon="google plus"
                             onClick= { this.auth }
                         />
                         <NestedModal />
