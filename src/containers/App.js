@@ -3,6 +3,7 @@ import { increment, decrement } from '../actions';
 // Semantic-UI
 
 // import CharacterInfo from '../components/characters/CharacterInfo';
+import Header from './Header';
 import MainPage from './MainPage';
 import UserList from './UserList';
 
@@ -28,7 +29,8 @@ class App extends Component {
                         userDescription='I am not Mafia!'
                     />
                 </Card.Group> */}
-                <MainPage />
+                <Header />
+                {/* <MainPage /> */}
                 <UserList />
             </div>
         );
