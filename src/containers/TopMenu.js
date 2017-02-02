@@ -5,7 +5,7 @@ import { Button, Dropdown, Menu } from 'semantic-ui-react';
 // Common
 import { languageOptions } from '../common';
 
-class Header extends Component {
+class TopMenu extends Component {
     constructor(props) {
         super(props);
 
@@ -19,10 +19,11 @@ class Header extends Component {
 
     render() {
         const { activeItem } = this.state;
+        const { toggleVisibility } = this.props;
 
         return(
             <Menu size="small" color="green">
-                <Menu.Item><img src='http://semantic-ui.com/images/logo.png' /></Menu.Item>
+                <Menu.Item onClick={toggleVisibility}><img src='http://semantic-ui.com/images/logo.png' /></Menu.Item>
                 <Menu.Item name="home" active={ activeItem === "home" } onClick={ this.handleItemClick } />
                 <Menu.Item name="ingame" active={ activeItem === "ingame" } onClick={ this.handleItemClick } />
 
@@ -44,4 +45,4 @@ class Header extends Component {
     }
 }
 
-export default Header;
+export default TopMenu;
