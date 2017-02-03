@@ -1,5 +1,6 @@
 // React
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 // Semantic-ui-react
 import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react';
 
@@ -21,7 +22,7 @@ class LeftMenu extends Component {
                 <Sidebar.Pushable as={Segment}>
                     <Sidebar as={Menu} animation="overlay" width="thin" visible={visible} icon="labeled" vertical inverted>
                         <Menu.Item name="home">
-                            <Icon name="home" /> Home
+                            <Icon name="home" />Home
                         </Menu.Item>
                         <Menu.Item name="camera">
                             <Icon name="camera" /> Camera

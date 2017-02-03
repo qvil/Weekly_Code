@@ -39,6 +39,34 @@ const userItems = [
         userDescription: "I'm docter",
         userKillScore: "0",
     },
+    {
+        userImage: "http://semantic-ui.com/images/avatar/large/jenny.jpg",
+        userId: "cccc",
+        userCharacter: "docter",
+        userDescription: "I'm docter",
+        userKillScore: "0",
+    },
+    {
+        userImage: "http://semantic-ui.com/images/avatar2/large/rachel.png",
+        userId: "ddd",
+        userCharacter: "civil",
+        userDescription: "I'm docter",
+        userKillScore: "0",
+    },
+    {
+        userImage: "http://semantic-ui.com/images/avatar/large/jenny.jpg",
+        userId: "cccc",
+        userCharacter: "docter",
+        userDescription: "I'm docter",
+        userKillScore: "0",
+    },
+    {
+        userImage: "http://semantic-ui.com/images/avatar2/large/rachel.png",
+        userId: "ddd",
+        userCharacter: "civil",
+        userDescription: "I'm docter",
+        userKillScore: "0",
+    },
 ];
 
 const styles = {
