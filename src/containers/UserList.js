@@ -84,7 +84,10 @@ class UserList extends Component {
           fluidButton: {
             loading: false
           }
-        }
+        };
+        setTimeout(() => {
+            this.props.toggleLoading();
+        }, 1000);
     }
 
     onClick = () => {

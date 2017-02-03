@@ -29,7 +29,7 @@ class TopMenu extends Component {
         return(
             <Menu size="small" color="green">
                 <Menu.Item onClick={toggleVisibility}><img src='http://semantic-ui.com/images/logo.png' /></Menu.Item>
-                <Menu.Item><Icon name="list" size="large" color="green"></Icon></Menu.Item>
+                {/* <Menu.Item><Icon name="list" size="large" color="green"></Icon></Menu.Item> */}
                 <Link to="/"><Menu.Item name="home" active={activeItem === "home"} onClick={this.handleItemClick} style={{ width: "100%", height: "100%" }}/></Link>
                 <Menu.Item name="ingame" active={ activeItem === "ingame" } onClick={ this.handleItemClick } />
 
